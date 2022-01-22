@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace ASP_Event_Project.Repositories
 {
-    interface IEventRepository
+    public interface IEventRepository
     {
-        IEnumerable<EventModel> Events { get; set; }
-        IEnumerable<EventModel> ExpiredEvents { get; set; }
-        EventModel GetEventByID(int eventId);
+        IEnumerable<EventModel> Events { get;  }
+        IEnumerable<EventModel> ExpiredEvents { get;  }
+        EventModel GetEventById(int eventId);
     }
 }

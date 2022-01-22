@@ -1,6 +1,10 @@
+using ASP_Event_Project.Mock;
+using ASP_Event_Project.Models;
+using ASP_Event_Project.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,6 +27,11 @@ namespace ASP_Event_Project
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddTransient<ICrudCategoryRepository, CrudCategoryRepository>();
+            services.AddTransient<IEventRepository, EventRepository>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddControllersWithViews();
         }
 

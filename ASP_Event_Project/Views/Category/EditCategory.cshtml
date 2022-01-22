@@ -1,0 +1,25 @@
+﻿@model ASP_Event_Project.Models.Category
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="container-fluid m-3">
+    <h2>Edytuj kategorię</h2>
+    <form asp-action="Edit" method="post">
+        <input asp-for="CategoryId" />
+        <div class="mb-3">
+            <label asp-for="CategoryName">Nazwa</label>
+            <input class="form-control" asp-for="CategoryName" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Description">Opis</label>
+            <input class="form-control" asp-for="Description" />
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-primary">Zapisz</button>
+        </div>
+
+    </form>
+</div>

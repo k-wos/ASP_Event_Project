@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ASP_Event_Project.Repositories
 {
-    interface ICategoryRepository
+    public interface ICategoryRepository
     {
         IEnumerable<Category> Categories { get; }
     }

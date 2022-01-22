@@ -1,0 +1,31 @@
+﻿@model ICollection<ASP_Event_Project.Models.Category>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="container-fluid m-3">
+    <h2>Kategorie</h2>
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>Nazwa</th>
+                <th>Opis</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var category in @Model)
+            {
+                <tr>
+                <td>@category.CategoryName</td>
+                 <td>@category.Description.</td>
+                 <td>
+                     <a class="btn btn-primary" asp-controller="Category" asp-action="EditCategory" asp-route-id="@category.CategoryId">Edytuj</a>
+                     <a class="btn btn-primary" asp-controller="Category" asp-action="DeleteCategory" asp-route-id="@category.CategoryId">Usuń</a>
+                 </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
