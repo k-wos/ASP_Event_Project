@@ -1,0 +1,42 @@
+﻿@model IEnumerable<EventModel>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="container-fluid m-3">
+    <h2>
+        Wydarzenia
+        <a class="btn btn-primary" asp-controller="Event" asp-action="AddEvent">Dodaj wydarzenie</a>
+    </h2>
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>Nazwa</th>
+                <th>Przedział wiekowy</th>
+                <th>Miejsce</th>
+                <th>Data</th>
+                <th>Cena</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var events in @Model)
+            {
+                <tr>
+                    <td>@events.Name</td>
+                    <td>@events.AgeRange</td>
+                    <td>@events.Place</td>
+                    <td>@events.EventDate</td>
+                    <td>@events.Price</td>
+                    <td>
+                        <a class="btn btn-primary" asp-controller="Event" asp-action="EditEvent" asp-route-id="@events.EventId">Edytuj</a>
+                        <a class="btn btn-secondary" asp-controller="Event" asp-action="EventDetails" asp-route-id="@events.EventId">Szczegóły</a>
+                        <a class="btn btn-danger" asp-controller="Event" asp-action="DeleteEvent" asp-route-id="@events.EventId">Usuń</a>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</div>

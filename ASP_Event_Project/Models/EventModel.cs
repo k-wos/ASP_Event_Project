@@ -31,7 +31,7 @@ namespace ASP_Event_Project.Models
         [DisplayName("Data")]
         public DateTime EventDate { get; set; }
         public bool Expired { get; set; }
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
         public virtual Category Category { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using ASP_Event_Project.Repositories;
+﻿using ASP_Event_Project.Models;
+using ASP_Event_Project.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,21 +10,51 @@ namespace ASP_Event_Project.Controllers
 {
     public class EventController : Controller
     {
-        private readonly IEventRepository _eventRepository;
-        private readonly ICategoryRepository _categoryRepository;
-        public EventController(IEventRepository eventRepository, ICategoryRepository categoryRepository)
+        private ICrudEventRepository _repository;
+
+        public EventController(ICrudEventRepository repository)
         {
-            _eventRepository = eventRepository;
-            _categoryRepository = categoryRepository;
+            _repository = repository;
         }
         public IActionResult Index()
         {
+            return View(_repository.FindAllEvents());
+        }
+        public IActionResult AddEvent()
+        {
             return View();
         }
-        public ViewResult List()
+       [HttpPost]
+       public IActionResult Add(EventModel eventModel)
         {
-            var events = _eventRepository.Events;
-            return View(events);
+            if (ModelState.IsValid)
+            {
+                return View("ConfirmEvent", _repository.AddEvent(eventModel));
+            }
+            else
+                return View("AddEvent");
         }
+
+
+        public IActionResult EditEvent(int id)
+        {
+            return View(_repository.FindEvent(id));
+        }
+        [HttpPost]
+        public IActionResult Edit(EventModel eventModel)
+        {
+            _repository.UpdateEvent(eventModel);
+            return View("Index", _repository.FindAllEvents());
+        }
+        public IActionResult DeleteEvent(int id)
+        {
+            return View(_repository.FindEvent(id));
+        }
+        public IActionResult Delete(int id)
+        {
+            _repository.DeleteEvent(id);
+            return View("Index", _repository.FindAllEvents());
+        }
+
     }
 }

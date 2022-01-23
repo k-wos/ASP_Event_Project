@@ -30,6 +30,7 @@ namespace ASP_Event_Project
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<ICrudCategoryRepository, CrudCategoryRepository>();
+            services.AddTransient<ICrudEventRepository, CrudEventRepository>();
             services.AddTransient<IEventRepository, EventRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddControllersWithViews();
