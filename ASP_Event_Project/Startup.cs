@@ -4,6 +4,7 @@ using ASP_Event_Project.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,6 +30,11 @@ namespace ASP_Event_Project
         {
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<AppIdentityDbContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("AppIdentity")));
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppIdentityDbContext>()
+                .AddDefaultTokenProviders();
             services.AddTransient<ICrudCategoryRepository, CrudCategoryRepository>();
             services.AddTransient<ICrudEventRepository, CrudEventRepository>();
             services.AddTransient<IEventRepository, EventRepository>();
@@ -53,6 +59,8 @@ namespace ASP_Event_Project
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseSession();
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
