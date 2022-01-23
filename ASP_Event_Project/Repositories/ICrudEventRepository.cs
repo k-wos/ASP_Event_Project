@@ -10,7 +10,7 @@ namespace ASP_Event_Project.Repositories
     {
         EventModel FindEvent(int id);
         EventModel AddEvent(EventModel eventModel);
-        EventModel DeleteEvent(int id);
+        void DeleteEvent(int id);
         void UpdateEvent(EventModel eventModel);
         IList<EventModel> FindAllEvents();
     }

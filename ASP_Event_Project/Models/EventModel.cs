@@ -10,6 +10,7 @@ namespace ASP_Event_Project.Models
 {
     public class EventModel
     {
+        [HiddenInput]
         [Key]
         public int EventId { get; set; }
         [Required(ErrorMessage = "Nazwa wydarzenia musi zostać podana")]
@@ -27,7 +28,6 @@ namespace ASP_Event_Project.Models
         public string Description { get; set; }
         [DisplayName("Cena")]
         public decimal Price { get; set; }
-        [DataType(DataType.Date)]
         [DisplayName("Data")]
         public DateTime EventDate { get; set; }
         public bool Expired { get; set; }

@@ -21,11 +21,11 @@ namespace ASP_Event_Project.Repositories
             return entity;
         }
 
-        public EventModel DeleteEvent(int id)
+        public void DeleteEvent(int id)
         {
-            EventModel eventModel = _context.Events.Remove(FindEvent(id)).Entity;
+             _context.Events.Remove(_context.Events.Find(id));
             _context.SaveChanges();
-            return eventModel;
+            
         }
 
 

@@ -24,6 +24,10 @@ namespace ASP_Event_Project.Controllers
         {
             return View();
         }
+        public IActionResult Details(int id)
+        {
+            return View(_repository.FindEvent(id));
+        }
        [HttpPost]
        public IActionResult Add(EventModel eventModel)
         {
@@ -48,13 +52,19 @@ namespace ASP_Event_Project.Controllers
         }
         public IActionResult DeleteEvent(int id)
         {
-            return View(_repository.FindEvent(id));
+            var match = _repository.FindEvent(id);
+            if (match == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                _repository.DeleteEvent(id);
+                return RedirectToAction("Index");
+            }
+
         }
-        public IActionResult Delete(int id)
-        {
-            _repository.DeleteEvent(id);
-            return View("Index", _repository.FindAllEvents());
-        }
+        
 
     }
 }
