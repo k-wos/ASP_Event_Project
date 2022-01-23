@@ -1,5 +1,9 @@
-﻿using ASP_Event_Project.Models;
+﻿using ASP_Event_Project.Migrations.AppIdentityDb;
+using ASP_Event_Project.Models;
 using ASP_Event_Project.Repositories;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,17 +15,21 @@ namespace ASP_Event_Project.Controllers
     public class EventController : Controller
     {
         private ICrudEventRepository _repository;
+        
 
         public EventController(ICrudEventRepository repository)
         {
             _repository = repository;
+            
         }
         public IActionResult Index()
         {
             return View(_repository.FindAllEvents());
         }
+        
         public IActionResult AddEvent()
         {
+            
             return View();
         }
         public IActionResult Details(int id)
