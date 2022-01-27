@@ -40,10 +40,16 @@ namespace ASP_Event_Project.Controllers
         }
         [HttpDelete]
         [Route("{id}")]
-        public EventModel DeleteEvent(int id)
+        public ActionResult<EventModel> DeleteEvent(int id)
         {
             _context.DeleteEvent(id);
             return _context.FindEvent(id);
+        }
+
+        [HttpGet]
+        public IList<EventModel> GetEvents()
+        {
+            return _context.FindAllEvents();
         }
         
     }

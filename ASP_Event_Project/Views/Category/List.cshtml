@@ -22,7 +22,7 @@
                  <td>@category.Description.</td>
                  <td>
                      <a class="btn btn-primary" asp-controller="Category" asp-action="EditCategory" asp-route-id="@category.CategoryId">Edytuj</a>
-                     <a class="btn btn-primary" asp-controller="Category" asp-action="DeleteCategory" asp-route-id="@category.CategoryId">Usuń</a>
+                     <a class="btn btn-danger" asp-controller="Category" asp-action="DeleteCategory" asp-route-id="@category.CategoryId">Usuń</a>
                  </td>
                 </tr>
             }

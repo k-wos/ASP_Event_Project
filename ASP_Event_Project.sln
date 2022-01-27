@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32002.261
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASP_Event_Project", "ASP_Event_Project\ASP_Event_Project.csproj", "{B3A6E8BA-2067-4AB8-AC7F-609041F39655}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP_Event_Project", "ASP_Event_Project\ASP_Event_Project.csproj", "{B3A6E8BA-2067-4AB8-AC7F-609041F39655}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiRestEventControllerTest", "ApiRestEventControllerTest\ApiRestEventControllerTest.csproj", "{3B2B1EBC-3C83-46F7-965B-9A1657F7C9B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{B3A6E8BA-2067-4AB8-AC7F-609041F39655}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3A6E8BA-2067-4AB8-AC7F-609041F39655}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3A6E8BA-2067-4AB8-AC7F-609041F39655}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B2B1EBC-3C83-46F7-965B-9A1657F7C9B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B2B1EBC-3C83-46F7-965B-9A1657F7C9B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B2B1EBC-3C83-46F7-965B-9A1657F7C9B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B2B1EBC-3C83-46F7-965B-9A1657F7C9B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

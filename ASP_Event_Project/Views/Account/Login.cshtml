@@ -6,7 +6,7 @@
 }
 <div class="row m-5">
     <div class="col-lg-12">
-        <h2>Login</h2>
+        <h2>Logowanie</h2>
         <form asp-controller="Account" asp-action="Login">
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="col col-lg-4">
@@ -19,11 +19,11 @@
                 <span asp-validation-for="Password" class="text-danger"></span>
                 <input class="form-control" asp-for="Password" />
             </div>
-            <div class="col col-lg-3">
-                <a class="text-info" asp-controller="Event" asp-action="Index">Chcesz tylko zobaczyć wydarzenia w okolicy?</a>
+            <div class="col col-lg-3 ">
+                <a class="text-info" asp-controller="EventManagment" asp-action="Index">Nie masz konta? Chcesz tylko zobaczyć wydarzenia w okolicy?</a>
             </div>
             <div class="col col-lg-3">
-                <button class="btn btn-primary" type="submit">Login</button>
+                <button class="btn btn-primary" type="submit">Zaloguj się</button>
             </div>
         </form>
     </div>
