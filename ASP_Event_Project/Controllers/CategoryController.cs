@@ -1,5 +1,6 @@
 ﻿using ASP_Event_Project.Models;
 using ASP_Event_Project.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -16,10 +17,11 @@ namespace ASP_Event_Project.Controllers
         {
             _repository = repository;
         }
-        public IActionResult Index()
+        public IActionResult List()
         {
             return View(_repository.FindAllCategories());
         }
+        [Authorize]
         public IActionResult EditCategory(int id)
         {
             return View(_repository.FindCategory(id));
@@ -29,6 +31,7 @@ namespace ASP_Event_Project.Controllers
             _repository.UpdateCategory(category);
             return View("Index", _repository.FindAllCategories());
         }
+        [Authorize]
         public IActionResult DeleteCategory(int id)
         {
             return View(_repository.FindCategory(id));

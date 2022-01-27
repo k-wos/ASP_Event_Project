@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -19,20 +20,19 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="List">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="EventManagment" asp-action="Index">Wydarzenia</a>
                         </li>
-                        
                         <li class="nav-item">
-                            <a class="nav-link text-dark " asp-area="" asp-controller="Account" asp-action="Login">Zaloguj się</a>
+                            <a class="nav-link text-dark " asp-area="" asp-controller="Category" asp-action="List">Kategorie</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark " asp-area="" asp-controller="Account" asp-action="Logout">Wyloguj się</a>
-                        </li>
+                       
 
                     </ul>
+                    <a class="nav-link text-dark " asp-area="" asp-controller="Account" asp-action="Login">Zaloguj się</a>
+                    <a class="nav-link text-dark " asp-area="" asp-controller="Account" asp-action="Logout">Wyloguj się</a>
                 </div>
             </div>
         </nav>
@@ -54,3 +54,5 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+

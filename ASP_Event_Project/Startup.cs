@@ -92,6 +92,7 @@ namespace ASP_Event_Project
                     name: "default",
                     pattern: "{controller=EventManagment}/{action=Index}/{id?}");
             });
+            
             IdentitySeedData.EnsurePopulated(app);
         }
     }

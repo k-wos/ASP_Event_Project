@@ -18,7 +18,7 @@ namespace ASP_Event_Project.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult List()
         {
             return View();
         }
