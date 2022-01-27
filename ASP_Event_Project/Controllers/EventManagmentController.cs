@@ -1,9 +1,6 @@
-﻿using ASP_Event_Project.Migrations.AppIdentityDb;
-using ASP_Event_Project.Models;
+﻿using ASP_Event_Project.Models;
 using ASP_Event_Project.Repositories;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,32 +9,37 @@ using System.Threading.Tasks;
 
 namespace ASP_Event_Project.Controllers
 {
-    public class EventController : Controller
+    public class EventManagmentController : Controller
     {
         private ICrudEventRepository _repository;
-        
 
-        public EventController(ICrudEventRepository repository)
+
+        public EventManagmentController(ICrudEventRepository repository)
         {
             _repository = repository;
-            
+
         }
+        
         public IActionResult Index()
         {
+
             return View(_repository.FindAllEvents());
         }
         
-        public IActionResult AddEvent()
-        {
-            
-            return View();
-        }
+        [HttpGet("{id}")]
         public IActionResult Details(int id)
         {
             return View(_repository.FindEvent(id));
         }
-       [HttpPost]
-       public IActionResult Add(EventModel eventModel)
+        [Authorize]
+        public IActionResult AddEvent()
+        {
+
+            return View();
+        }
+        [Authorize]
+        [HttpPost]
+        public IActionResult AddEvent(EventModel eventModel)
         {
             if (ModelState.IsValid)
             {
@@ -47,17 +49,19 @@ namespace ASP_Event_Project.Controllers
                 return View("AddEvent");
         }
 
-
+        [Authorize]
         public IActionResult EditEvent(int id)
         {
             return View(_repository.FindEvent(id));
         }
+        [Authorize]
         [HttpPost]
         public IActionResult Edit(EventModel eventModel)
         {
             _repository.UpdateEvent(eventModel);
             return View("Index", _repository.FindAllEvents());
         }
+        [Authorize]
         public IActionResult DeleteEvent(int id)
         {
             var match = _repository.FindEvent(id);
@@ -72,7 +76,8 @@ namespace ASP_Event_Project.Controllers
             }
 
         }
-        
+
 
     }
 }
+

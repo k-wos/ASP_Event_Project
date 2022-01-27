@@ -1,4 +1,6 @@
 ﻿using ASP_Event_Project.Models;
+using ASP_Event_Project.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,53 +13,37 @@ namespace ASP_Event_Project.Controllers
     [ApiController]
     public class RestEventController : ControllerBase
     {
-        private ApplicationDbContext _context;
-        public RestEventController(ApplicationDbContext context)
+        private ICrudEventRepository _context;
+        public RestEventController(ICrudEventRepository context)
         {
             _context = context;
         }
         [HttpPost]
         public EventModel AddEvent([FromBody] EventModel eventModel)
         {
-            var entity = _context.Events.Add(eventModel).Entity;
-            _context.SaveChanges();
+            EventModel entity = _context.AddEvent(eventModel);
+            
             return entity;
         }
+        
         [HttpGet]
-        public IList<EventModel> GetEvent()
+        [Route("{id}")]
+        public EventModel GetEvent(int id)
         {
-            return _context.Events.ToList();
+            return _context.FindEvent(id);
         }
-        [HttpPut("{id}")]
-        public ActionResult<EventModel> EditEvent(int id, [FromBody] EventModel eventModel)
+        [HttpPut]
+        public ActionResult<EventModel> EditEvent( [FromBody] EventModel eventModel)
         {
-            var a = _context.Events.Where(e => e.EventId == id).FirstOrDefault();
-
-            if(a!= null)
-            {
-                a.Name = eventModel.Name;
-                a.AgeRange = eventModel.AgeRange;
-                a.Place = eventModel.Place;
-                a.Description = eventModel.Description;
-                a.Price = eventModel.Price;
-                a.EventDate = eventModel.EventDate;
-                a.CategoryId = eventModel.CategoryId;
-                _context.SaveChanges();
-            }
-            else
-            {
-                return NotFound();
-            }
+            _context.UpdateEvent(eventModel);
             return Ok();
         }
         [HttpDelete]
         [Route("{id}")]
         public EventModel DeleteEvent(int id)
         {
-            var events = _context.Events.Where(e => e.EventId == id).First();
-            _context.Remove(events);
-            _context.SaveChanges();
-            return events;
+            _context.DeleteEvent(id);
+            return _context.FindEvent(id);
         }
         
     }

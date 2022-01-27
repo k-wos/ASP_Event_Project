@@ -1,4 +1,5 @@
-﻿using ASP_Event_Project.Models;
+﻿
+using ASP_Event_Project.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +22,7 @@ namespace ASP_Event_Project.Controllers
         }
         [AllowAnonymous]
         [HttpGet]
+        
         public IActionResult Login(string returnUrl)
         {
             return View(new LoginModel{
@@ -30,6 +32,7 @@ namespace ASP_Event_Project.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> Login(LoginModel loginModel)
         {
             if (ModelState.IsValid)

@@ -1,3 +1,5 @@
+
+using ASP_Event_Project.Filtr;
 using ASP_Event_Project.Mock;
 using ASP_Event_Project.Models;
 using ASP_Event_Project.Repositories;
@@ -38,6 +40,7 @@ namespace ASP_Event_Project
                 .AddDefaultTokenProviders();
             services.AddTransient<ICrudCategoryRepository, CrudCategoryRepository>();
             services.AddTransient<ICrudEventRepository, CrudEventRepository>();
+            services.AddTransient<ICustomerEventRepository, CustomerEventRepository>();
             services.AddTransient<IEventRepository, EventRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddControllersWithViews();
@@ -48,6 +51,14 @@ namespace ASP_Event_Project
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "my_events", Version = "v1" });
             });
+            services.AddDistributedMemoryCache();
+            /*services.AddSingleton<BasicAuthorizationFilter>();
+            services.AddMvc().AddMvcOptions(options =>
+            {
+                options.Filters.AddService<BasicAuthorizationFilter>();
+            });*/
+            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -79,7 +90,7 @@ namespace ASP_Event_Project
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=EventManagment}/{action=Index}/{id?}");
             });
             IdentitySeedData.EnsurePopulated(app);
         }

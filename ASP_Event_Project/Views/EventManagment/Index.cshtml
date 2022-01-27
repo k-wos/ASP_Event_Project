@@ -8,7 +8,7 @@
 <div class="container-fluid m-3">
     <h2>
         Wydarzenia
-        <a class="btn btn-primary" asp-controller="Event" asp-action="AddEvent">Dodaj wydarzenie</a>
+        <a class="btn btn-primary" asp-controller="EventManagment" asp-action="AddEvent">Dodaj wydarzenie</a>
     </h2>
     <table class="table table-sm">
         <thead>
@@ -30,9 +30,9 @@
                     <td>@events.EventDate</td>
                     <td>@events.Price</td>
                     <td>
-                        <a class="btn btn-primary" asp-controller="Event" asp-action="EditEvent" asp-route-id="@events.EventId">Edytuj</a>
-                        <a class="btn btn-secondary" asp-controller="Event" asp-action="Details" asp-route-id="@events.EventId">Szczegóły</a>
-                        <a class="btn btn-danger" asp-controller="Event" asp-action="DeleteEvent" asp-route-id="@events.EventId">Usuń</a>
+                        <a class="btn btn-primary" asp-controller="EventManagment" asp-action="EditEvent" asp-route-id="@events.EventId">Edytuj</a>
+                        <a class="btn btn-secondary" asp-controller="EventManagment" asp-action="Details" asp-route-id="@events.EventId">Szczegóły</a>
+                        <a class="btn btn-danger" asp-controller="EventManagment" asp-action="DeleteEvent" asp-route-id="@events.EventId">Usuń</a>
                     </td>
                 </tr>
 
